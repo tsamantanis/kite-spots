@@ -1,0 +1,8 @@
+{
+  "name": "kite-spots-greece",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "045a050a"
+}
