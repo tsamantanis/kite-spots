@@ -35,7 +35,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 const App: React.FC = () => (
-    <IonApp className="light">
+    <IonApp>
         <IonReactRouter>
             <IonTabs>
                 <IonRouterOutlet>
