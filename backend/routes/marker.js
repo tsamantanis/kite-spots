@@ -3,6 +3,7 @@ const router = require('express').Router();
 const { body, query, validationResult } = require('express-validator');
 const User = mongoose.model('User');
 const Marker = mongoose.model('Marker');
+const Spot = mongoose.model('Spot');
 
 const auth = require('./auth');
 
@@ -15,8 +16,16 @@ router.get('/', function(req, res) {
 router.get('/get', [
     query('id').not().isEmpty()
 ], function(req, res) {
-    Marker.findById(req.query.id).then(async function (marker) {
+    Marker.findById(req.query.id).then(function (marker) {
         return res.status(201).json({ marker: marker });
+    })
+});
+
+router.get('/spot', [
+    query('id').not().isEmpty()
+], function(req, res) {
+    Spot.find({ location: req.query.id }).then(function (spots) {
+        return res.status(201).json({ spot: spots[0] });
     })
 });
 
@@ -31,8 +40,8 @@ router.post('/new', [
         }
 
         let marker = new Marker();
-        marker.lat = req.body.lat;
-        marker.lng = req.body.lng;
+        marker.lat = req.body.marker.lat;
+        marker.lng = req.body.marker.lng;
         marker.save().then(function(marker) {
             res.json({
                 message: "Marker created successfully!",

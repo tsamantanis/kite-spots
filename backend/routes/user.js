@@ -40,6 +40,7 @@ router.post('/register', [
         if (err) {
             return res.json({errors: { error: err.message }});
         }
+        return res.json({user: user.toAuthJSON()});
     });
 });
 
