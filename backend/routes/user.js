@@ -24,6 +24,7 @@ router.post('/login',[
 
 router.post('/register', [
     body('user.email').isEmail(),
+    body('user.name').not().isEmpty(),
     body('user.password').isLength({min: 8}),
 ], async function(req, res) {
     const errors = validationResult(req);
@@ -33,6 +34,7 @@ router.post('/register', [
 
     let user = new User();
     user.email = req.body.user.email.trim();
+    user.name = req.body.user.name.trim();
     user.setPassword(req.body.user.password);
     user.save(function (err) {
         if (err) {
