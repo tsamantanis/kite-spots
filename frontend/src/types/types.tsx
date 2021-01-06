@@ -1,4 +1,5 @@
 export interface Marker {
+    _id: string,
     lat: number,
     lng: number
 }
@@ -8,6 +9,7 @@ export interface MarkerAPIResponse {
 }
 
 export interface Spot {
+    _id: string,
     location: string,
     name: string,
     bestMonths: Array<string>,
