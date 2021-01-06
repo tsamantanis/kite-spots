@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 router.use('/user', require('./user'));
 router.use('/marker', require('./marker'));
+router.use('/spot', require('./spot'));
 
 router.use(function(err, req, res, next){
     if(err.name === 'ValidationError'){

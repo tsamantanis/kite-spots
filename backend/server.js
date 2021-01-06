@@ -7,6 +7,7 @@ require('dotenv').config();
 
 require('./models/User');
 require('./models/Marker');
+require('./models/Spot');
 require('./config/passport');
 
 const app = express();
