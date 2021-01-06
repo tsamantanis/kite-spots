@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 
 const UserSchema = mongoose.Schema({
     email: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
+    name: {type: String, required: [true, "can't be blank"], index: true},
+    photo: {type: String},
     hash: String,
     salt: String
 }, {timestamps: true});
@@ -30,6 +32,7 @@ UserSchema.methods.generateJWT = function() {
         {
             id: this._id,
             email: this.email,
+            name: this.name,
             exp: parseInt(exp.getTime() / 1000),
         },
         process.env.SECRET
@@ -40,6 +43,8 @@ UserSchema.methods.toAuthJSON = function(){
     return {
         _id: this._id,
         email: this.email,
+        name: this.name,
+        photo: this.photo,
         token: this.generateJWT(),
     };
 };
