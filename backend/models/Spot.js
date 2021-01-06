@@ -4,8 +4,10 @@ const SpotSchema = mongoose.Schema({
     name: {type: String, required: [true, "can't be blank"]},
     location: {type: mongoose.Schema.Types.ObjectId, unique: true, required: [true, "can't be blank"], index: true},
     bestMonths: [{type: String, required: [true, "can't be blank"]}],
-    wind: {type: String},
-    water: {type: String},
+    windStregth: {type: String},
+    windDirection: {type: String},
+    gusty: {type: Boolean},
+    water: [{type: String}],
     otherActivities: [{type: String}],
 }, {timestamps: true});
 
