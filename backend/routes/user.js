@@ -1,0 +1,26 @@
+const mongoose = require('mongoose');
+const router = require('express').Router();
+const { body, query, validationResult } = require('express-validator');
+const passport = require('passport');
+const User = mongoose.model('User');
+
+router.post('/register', [
+    body('user.email').isEmail(),
+    body('user.password').isLength({min: 8}),
+], async function(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    let user = new User();
+    user.email = req.body.user.email.trim();
+    user.setPassword(req.body.user.password);
+    user.save(function (err) {
+        if (err) {
+            return res.json({errors: { error: err.message }});
+        }
+    });
+});
+
+module.exports = router;
