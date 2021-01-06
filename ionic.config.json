@@ -1,8 +1,5 @@
 {
-  "name": "kite-spots-greece",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react",
-  "id": "045a050a"
+  "name": "New Ionic App",
+  "integrations": {},
+  "type": "react"
 }
