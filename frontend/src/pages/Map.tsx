@@ -6,11 +6,6 @@ import './Map.css';
 const Map: React.FC = () => {
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>Map</IonTitle>
-                </IonToolbar>
-            </IonHeader>
             <IonContent fullscreen>
                 <IonHeader collapse="condense">
                     <IonToolbar>
