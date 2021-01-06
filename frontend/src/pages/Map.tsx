@@ -7,11 +7,6 @@ const Map: React.FC = () => {
     return (
         <IonPage>
             <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                    <IonToolbar>
-                        <IonTitle size="large">Map</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
                 <LeafletMap />
             </IonContent>
         </IonPage>
