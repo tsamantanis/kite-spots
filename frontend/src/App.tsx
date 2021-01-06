@@ -10,7 +10,7 @@ import {
     IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { globeOutline, calendarOutline, personOutline } from 'ionicons/icons';
 import Map from './pages/Map';
 import Events from './pages/Events';
 import Account from './pages/Account';
@@ -46,16 +46,13 @@ const App: React.FC = () => (
                 </IonRouterOutlet>
                 <IonTabBar slot="bottom">
                     <IonTabButton tab="map" href="/map">
-                        <IonIcon icon={triangle} />
-                        <IonLabel>Map</IonLabel>
+                        <IonIcon icon={globeOutline} />
                     </IonTabButton>
                     <IonTabButton tab="events" href="/events">
-                        <IonIcon icon={ellipse} />
-                        <IonLabel>Events</IonLabel>
+                        <IonIcon icon={calendarOutline} />
                     </IonTabButton>
                     <IonTabButton tab="account" href="/account">
-                        <IonIcon icon={square} />
-                        <IonLabel>Account</IonLabel>
+                        <IonIcon icon={personOutline} />
                     </IonTabButton>
                 </IonTabBar>
             </IonTabs>
