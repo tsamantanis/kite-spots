@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 require('./models/User');
+require('./models/Marker');
 require('./config/passport');
 
 const app = express();
