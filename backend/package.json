@@ -16,7 +16,8 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.8",
     "mongoose-unique-validator": "^2.0.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1"
   },
   "devDependencies": {
     "webpack": "^5.11.0",
