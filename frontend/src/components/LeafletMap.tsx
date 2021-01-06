@@ -4,20 +4,23 @@ import { useIonViewDidEnter } from '@ionic/react';
 
 import { LatLngTuple, LeafletMouseEvent } from 'leaflet';
 
+import { useGetMarkers } from '../custom-hooks/use-queries';
+
 const defaultLatLng: LatLngTuple = [38.2749497, 23.8102717];
 const zoom:number = 7;
 
 const LeafletMap: React.FC = () => {
-    const [markers, setMarkers] = useState<Array<any>>([])
+    // const [markers, setMarkers] = useState<Array<any>>([])
+    const markers = useGetMarkers();
 
     useIonViewDidEnter(() => {
         window.dispatchEvent(new Event('resize'));
     });
 
     const addMarker = (e: LeafletMouseEvent) => {
-        const updatedMarkers = markers;
-        updatedMarkers.push(e.latlng);
-        setMarkers(updatedMarkers);
+        // const updatedMarkers = markers;
+        // updatedMarkers.push(e.latlng);
+        // setMarkers(updatedMarkers);
     }
 
     return (
