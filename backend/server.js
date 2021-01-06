@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
+require('./models/User');
+require('./config/passport');
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -25,4 +28,4 @@ app.listen(port, () => {
 });
 
 
-// app.use(require('./routes'));
+app.use(require('./routes'));
