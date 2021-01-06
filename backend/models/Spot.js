@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const SpotSchema = mongoose.Schema({
+    name: {type: String, required: [true, "can't be blank"]},
     location: {type: mongoose.Schema.Types.ObjectId, unique: true, required: [true, "can't be blank"], index: true},
     bestMonths: [{type: String, required: [true, "can't be blank"]}],
     wind: {type: String},
