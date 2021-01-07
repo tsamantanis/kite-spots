@@ -34,4 +34,6 @@ export const windDirections = [
         rotation: '135deg'
     }
 ];
+
+export const waterConditions = ["Flat", "Choppy", "Waves"];
 export default months;

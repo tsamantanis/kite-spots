@@ -3,7 +3,7 @@ import { IonModal, IonButton, IonContent, IonChip, IonLabel, IonGrid, IonRow, Io
 import { arrowDownOutline } from 'ionicons/icons';
 
 import { NewSpotModalProps } from '../types/types';
-import months, { windDirections } from '../constants';
+import months, { windDirections, waterConditions } from '../constants';
 import './NewSpotModal.css';
 
 export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
@@ -39,6 +39,18 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
             updatedSelectedWindDirections.push(input.innerText);
         }
         setSelectedWindDirections([...updatedSelectedWindDirections]);
+    }
+
+    const handleWater = (event: React.MouseEvent<HTMLIonChipElement, MouseEvent>) => {
+        const input = event.target as HTMLElement;
+        let updatedWater = water;
+        if (water.includes(input.innerText)) {
+            const index = water.indexOf(input.innerText, 0);
+            updatedWater.splice(index, 1)
+        } else {
+            updatedWater.push(input.innerText);
+        }
+        setWater([...updatedWater]);
     }
 
     const submit = () => {
@@ -105,6 +117,32 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                                             >
                                                 <IonIcon icon={ arrowDownOutline } style={{transform: `rotate(${windDirection.rotation})`}}/>
                                                 <IonLabel>{ windDirection.name }</IonLabel>
+                                        </IonChip>
+                                    )
+                                })}
+                            </IonCol>
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="windStrength">Is it gusty?</label>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="windStrength">Water Conditions</label>
+                        <div>
+                            <IonCol>
+                                { waterConditions.map((condition) => {
+                                    return (
+                                        <IonChip
+                                            outline
+                                            color={
+                                                water.length > 0 ?
+                                                water.includes(condition) ?
+                                                "success" : "warning" : ""
+                                            }
+                                            key={ condition }
+                                            onClick={(event) => handleWater(event)}
+                                            >
+                                                <IonLabel>{ condition }</IonLabel>
                                         </IonChip>
                                     )
                                 })}
