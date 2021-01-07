@@ -6,7 +6,7 @@ import { useGetSpot } from '../custom-hooks/use-queries';
 import BottomSheet from './BottomSheet';
 
 import './SpotDetails.css';
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+import months from '../constants';
 const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker }) => {
     const spot = useGetSpot(marker._id);
     if (spot) {
