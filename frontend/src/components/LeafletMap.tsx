@@ -3,7 +3,7 @@ import { Map, Marker as LeafletMarker, Popup, TileLayer } from 'react-leaflet';
 import { useIonViewDidEnter } from '@ionic/react';
 import { LatLngTuple, LeafletMouseEvent } from 'leaflet';
 
-import { Marker } from '../types/types';
+import { LeafletMapProps } from '../types/types';
 import { useGetMarkers } from '../custom-hooks/use-queries';
 
 const defaultLatLng: LatLngTuple = [38.2749497, 23.8102717];
@@ -15,7 +15,7 @@ const zoom:number = 7;
 //   iconSize: [25, 25]
 // });
 
-const LeafletMap: React.FC = () => {
+const LeafletMap: React.FC<LeafletMapProps> = ({ toggleSpotDetails }) => {
     // const [markers, setMarkers] = useState<Array<any>>([])
     const markers = useGetMarkers();
 
@@ -27,10 +27,6 @@ const LeafletMap: React.FC = () => {
         // const updatedMarkers = markers;
         // updatedMarkers.push(e.latlng);
         // setMarkers(updatedMarkers);
-    }
-
-    const showSpotDetails = (marker: Marker) => {
-        console.log(marker);
     }
 
     return (
@@ -54,7 +50,7 @@ const LeafletMap: React.FC = () => {
                                 marker.lng
                             ]}
                             onClick={() => {
-                                showSpotDetails(marker);
+                                toggleSpotDetails(marker);
                             }}
                             // icon={markerIcon} // use this for custom icon
                         />

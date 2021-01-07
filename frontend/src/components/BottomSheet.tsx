@@ -5,19 +5,15 @@ import './BottomSheet.css';
 
 const BottomSheet: React.FC = () => {
     const drawerRef = useRef<HTMLIonCardElement | null>(null);
-    // when the page is loaded, we find the element that is the drawer
-    // and attach the gesture to it's reference using react `useRef` hook
+
     useEffect(() => {
         let c = drawerRef.current as HTMLIonCardElement;
         if (typeof c !== 'undefined' && c !== null) {
-            console.log(c)
             const gesture: Gesture = createGesture({
                 el: c,
                 gestureName: "my-swipe",
                 direction: "y",
-                /**
-                * when moving, we start to show more of the drawer
-                */
+
                 onMove: event => {
                     if (event.deltaY < -300) return;
                     // closing with a downward swipe
@@ -28,12 +24,7 @@ const BottomSheet: React.FC = () => {
                     }
                     c.style.transform = `translateY(${event.deltaY}px)`;
                 },
-                /**
-                * when the moving is done, based on a specific delta in the movement; in this
-                * case that value is -150, we determining the user wants to open the drawer.
-                *
-                * if not we just reset the drawer state to closed
-                */
+
                 onEnd: event => {
                     c.style.transition = ".5s ease-out";
                     if (event.deltaY < -30 && c.dataset.open !== "true") {
@@ -44,15 +35,9 @@ const BottomSheet: React.FC = () => {
                 }
             });
             gesture.enable(true);
-        }// enable the gesture for the item
+        }
     }, []);
-    /**
-    * this function is called when the button on the top of the drawer
-    * is clicked.  We are using the data-set attributes on the element
-    * to determine the state of the drawer.
-    *
-    * this could be done using react state if you like.
-    */
+
     const toggleDrawer = () => {
         let c = drawerRef.current as HTMLIonCardElement;
         if (typeof c !== 'undefined' && c !== null) {

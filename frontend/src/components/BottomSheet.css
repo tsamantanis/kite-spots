@@ -1,11 +1,11 @@
 .bottom-drawer {
     position: absolute;
-    left: -5%;
-    bottom: -330px;
-    width: 101%;
-    height: 400px;
+    bottom: -360px;
+    width: 100%;
+    height: 60vh;
     border-radius: 30px;
     z-index: 1;
+    margin: auto;
 }
 
 .bottom-drawer div {
@@ -13,8 +13,7 @@
     padding: 10px;
 }
 
-.bottom-drawer div ion-button, .bottom-drawer div .button-solid {
-    width: 20% !important;
-    height: 10px;
-    color: var(--ion-color-light) !important;
+.bottom-drawer div ion-button {
+    width: 25% !important;
+    height: 8px;
 }

@@ -23,3 +23,7 @@ export interface Spot {
 export interface SpotAPIResponse {
     data: Spot[]
 }
+
+export interface LeafletMapProps {
+    toggleSpotDetails: (marker: Marker) => void;
+}

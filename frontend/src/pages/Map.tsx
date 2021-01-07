@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IonContent, IonFab, IonFabButton, IonPage, IonIcon } from '@ionic/react';
 import { add } from 'ionicons/icons';
+
+import { Marker, Spot } from '../types/types';
 import LeafletMap from '../components/LeafletMap';
 import BottomSheet from '../components/BottomSheet';
 import './Map.css';
 
 const Map: React.FC = () => {
+    const [showSpotDetails, setShowSpotDetails] = useState<Spot>();
+    const toggleSpotDetails = (marker: Marker) => {
+        console.log(marker);
+    }
+
     return (
         <IonPage>
             <IonContent fullscreen>
@@ -14,9 +21,12 @@ const Map: React.FC = () => {
                         <IonIcon icon={add} />
                     </IonFabButton>
                 </IonFab>
-                <LeafletMap />
-                <BottomSheet />
+                <LeafletMap
+                    toggleSpotDetails={toggleSpotDetails}
+                />
             </IonContent>
+            <BottomSheet />
+
         </IonPage>
     );
 };
