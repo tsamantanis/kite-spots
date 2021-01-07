@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { IonContent, IonFab, IonFabButton, IonPage, IonIcon } from '@ionic/react';
-import { add } from 'ionicons/icons';
+import { IonContent, IonFab, IonFabButton, IonPage, IonIcon, IonToast } from '@ionic/react';
+import { add, close } from 'ionicons/icons';
 
 import { Marker, Spot, SpotDetails } from '../types/types';
 import { useGetSpot } from '../custom-hooks/use-queries';
@@ -12,6 +12,7 @@ import './Map.css';
 
 const Map: React.FC = () => {
     const [showSpotDetails, setShowSpotDetails] = useState<Marker>();
+    const [addSpot, setAddSpot] = useState<boolean>(false);
     const toggleSpotDetails = (marker: Marker) => {
         setShowSpotDetails(marker);
     }
@@ -20,12 +21,20 @@ const Map: React.FC = () => {
         <IonPage>
             <IonContent fullscreen>
                 <IonFab vertical="top" horizontal="end" slot="fixed">
-                    <IonFabButton>
-                        <IonIcon icon={add} />
+                    <IonFabButton
+                        onClick={() => setAddSpot(!addSpot)}
+                    >
+                        <IonIcon icon={!addSpot ? add : close} />
                     </IonFabButton>
                 </IonFab>
                 <LeafletMap
                     toggleSpotDetails={toggleSpotDetails}
+                />
+                <IonToast
+                    color="secondary"
+                    isOpen={addSpot}
+                    onDidDismiss={() => setAddSpot(false)}
+                    message="Click on the map to add the spot location"
                 />
             </IonContent>
             {typeof showSpotDetails !== 'undefined' && <SpotDetailsComponent marker={showSpotDetails}/>}
