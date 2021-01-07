@@ -15,6 +15,7 @@ import Account from '../pages/Account';
 const Tabs: React.FC = () => (
     <IonTabs>
         <IonRouterOutlet>
+            <Redirect exact from="/" to="/map" />
             <Route path="/map" component={Map} />
             <Route path="/events" component={Events} exact={true} />
             <Route path="/account" component={Account} exact={true}/>
