@@ -33,6 +33,12 @@ form {
     margin-bottom: 1.5rem;
 }
 
+.input-group small {
+    margin-top: 0.5rem;
+    color: var(--ion-color-danger);
+    text-align: center;
+}
+
 img {
     margin-top: -2rem;
     margin-bottom: -4rem;
