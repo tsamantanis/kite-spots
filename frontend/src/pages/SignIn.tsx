@@ -29,7 +29,7 @@ const SignIn: React.FC = () => {
     useEffect(() => {
         setSubmit(false);
     }, [user])
-    console.log(user);
+
     if (typeof user !== 'undefined' && user !== null) {
         localStorage.setItem('token', user.token);
         return (<Redirect to="/map" />);
