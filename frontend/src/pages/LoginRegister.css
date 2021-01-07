@@ -19,6 +19,11 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  padding: 2rem;
+}
+
+form {
+    width: 100%;
 }
 
 .input-group {
@@ -66,4 +71,16 @@ button {
     background: var(--ion-color-primary);
     color: white;
     font-size: 1.2rem;
+}
+
+@media only screen and (min-width: 768px) {
+    form {
+        max-width: 50% !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    form {
+        max-width: 33% !important;
+    }
 }
