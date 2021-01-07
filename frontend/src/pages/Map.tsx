@@ -2,6 +2,7 @@ import React from 'react';
 import { IonContent, IonFab, IonFabButton, IonPage, IonIcon } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import LeafletMap from '../components/LeafletMap';
+import BottomSheet from '../components/BottomSheet';
 import './Map.css';
 
 const Map: React.FC = () => {
@@ -14,6 +15,7 @@ const Map: React.FC = () => {
                     </IonFabButton>
                 </IonFab>
                 <LeafletMap />
+                <BottomSheet />
             </IonContent>
         </IonPage>
     );
