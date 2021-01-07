@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { IonModal, IonButton, IonContent, IonChip, IonLabel, IonGrid, IonRow, IonCol } from '@ionic/react';
-import { NewSpotModalProps } from '../types/types';
+import { IonModal, IonButton, IonContent, IonChip, IonLabel, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
+import { arrowDownOutline } from 'ionicons/icons';
 
-import months from '../constants';
+import { NewSpotModalProps } from '../types/types';
+import months, { windDirections } from '../constants';
 import './NewSpotModal.css';
 
 export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
@@ -11,7 +12,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
     const [name, setName] = useState<string>('');
     const [bestMonths, setBestMonths] = useState<Array<string>>([]);
     const [windStrength, setWindStrength] = useState<string>('');
-    const [windDirection, setWindDirection] = useState<Array<string>>([]);
+    const [selectedWindDirections, setSelectedWindDirections] = useState<Array<string>>([]);
     const [gusty, setGusty] = useState<boolean>(false);
     const [water, setWater] = useState<Array<string>>([]);
     const [otherActivities, setOtherActivities] = useState<Array<string>>([]);
@@ -26,6 +27,18 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
             updatedBestMonths.push(input.innerText);
         }
         setBestMonths([...updatedBestMonths]);
+    }
+
+    const handleSelectedWindDirections = (event: React.MouseEvent<HTMLIonChipElement, MouseEvent>) => {
+        const input = event.target as HTMLElement;
+        let updatedSelectedWindDirections = selectedWindDirections;
+        if (selectedWindDirections.includes(input.innerText)) {
+            const index = selectedWindDirections.indexOf(input.innerText, 0);
+            updatedSelectedWindDirections.splice(index, 1)
+        } else {
+            updatedSelectedWindDirections.push(input.innerText);
+        }
+        setSelectedWindDirections([...updatedSelectedWindDirections]);
     }
 
     const submit = () => {
@@ -64,7 +77,34 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                                             key={ month }
                                             onClick={(event) => handleBestMonths(event)}
                                             >
-                                            <IonLabel>{ month }</IonLabel>
+                                                <IonLabel>{ month }</IonLabel>
+                                        </IonChip>
+                                    )
+                                })}
+                            </IonCol>
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="windStrength">Wind Strength</label>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="windStrength">Wind Direction</label>
+                        <div>
+                            <IonCol>
+                                { windDirections.map((windDirection) => {
+                                    return (
+                                        <IonChip
+                                            outline
+                                            color={
+                                                selectedWindDirections.length > 0 ?
+                                                selectedWindDirections.includes(windDirection.name) ?
+                                                "success" : "warning" : ""
+                                            }
+                                            key={ windDirection.name }
+                                            onClick={(event) => handleSelectedWindDirections(event)}
+                                            >
+                                                <IonIcon icon={ arrowDownOutline } style={{transform: `rotate(${windDirection.rotation})`}}/>
+                                                <IonLabel>{ windDirection.name }</IonLabel>
                                         </IonChip>
                                     )
                                 })}
