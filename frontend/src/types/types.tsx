@@ -41,5 +41,11 @@ export interface SpotDetailsAPIResponse {
 }
 
 export interface LeafletMapProps {
-    toggleSpotDetails: (marker: Marker) => void;
+    addSpot: boolean,
+    toggleNewSpotMarker: (marker: Marker) => void,
+    toggleSpotDetails: (marker: Marker) => void,
+}
+
+export interface NewSpotModalProps {
+    marker: Marker
 }

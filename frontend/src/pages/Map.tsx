@@ -5,6 +5,7 @@ import { add, close } from 'ionicons/icons';
 import { Marker, Spot, SpotDetails } from '../types/types';
 import { useGetSpot } from '../custom-hooks/use-queries';
 import LeafletMap from '../components/LeafletMap';
+import NewSpotModal from '../components/NewSpotModal';
 import SpotDetailsComponent from '../components/SpotDetailsComponent';
 import './Map.css';
 
@@ -12,9 +13,14 @@ import './Map.css';
 
 const Map: React.FC = () => {
     const [showSpotDetails, setShowSpotDetails] = useState<Marker>();
+    const [newSpotMarker, setNewSpotMarker] = useState<Marker>();
     const [addSpot, setAddSpot] = useState<boolean>(false);
     const toggleSpotDetails = (marker: Marker) => {
         setShowSpotDetails(marker);
+    }
+
+    const toggleNewSpotMarker = (marker: Marker) => {
+        setNewSpotMarker(marker);
     }
 
     return (
@@ -28,7 +34,9 @@ const Map: React.FC = () => {
                     </IonFabButton>
                 </IonFab>
                 <LeafletMap
-                    toggleSpotDetails={toggleSpotDetails}
+                    addSpot={ addSpot }
+                    toggleSpotDetails={ toggleSpotDetails }
+                    toggleNewSpotMarker={ toggleNewSpotMarker }
                 />
                 <IonToast
                     color="secondary"
@@ -37,7 +45,8 @@ const Map: React.FC = () => {
                     message="Click on the map to add the spot location"
                 />
             </IonContent>
-            {typeof showSpotDetails !== 'undefined' && <SpotDetailsComponent marker={showSpotDetails}/>}
+            { typeof showSpotDetails !== 'undefined' && <SpotDetailsComponent marker={showSpotDetails}/> }
+            { typeof newSpotMarker !== 'undefined' && <NewSpotModal marker={newSpotMarker} /> }
         </IonPage>
     );
 };

@@ -15,7 +15,7 @@ const zoom:number = 7;
 //   iconSize: [25, 25]
 // });
 
-const LeafletMap: React.FC<LeafletMapProps> = ({ toggleSpotDetails }) => {
+const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, toggleSpotDetails, toggleNewSpotMarker }) => {
     // const [markers, setMarkers] = useState<Array<any>>([])
     const markers = useGetMarkers();
 
@@ -24,9 +24,13 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ toggleSpotDetails }) => {
     });
 
     const addMarker = (e: LeafletMouseEvent) => {
-        // const updatedMarkers = markers;
-        // updatedMarkers.push(e.latlng);
-        // setMarkers(updatedMarkers);
+        if (addSpot) {
+            toggleNewSpotMarker({
+                _id: '',
+                lat: e.latlng.lat,
+                lng: e.latlng.lng
+            });
+        }
     }
 
     return (
