@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { IonModal, IonButton, IonContent, IonChip, IonLabel, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
+import {
+    IonModal,
+    IonButton,
+    IonContent,
+    IonChip,
+    IonLabel,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonIcon
+} from '@ionic/react';
 import { arrowDownOutline } from 'ionicons/icons';
 
 import { NewSpotModalProps } from '../types/types';
@@ -125,6 +135,15 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                     </div>
                     <div className="input-group">
                         <label htmlFor="windStrength">Is it gusty?</label>
+                        <div>
+                            <IonChip
+                                outline
+                                color={ gusty ? "success" : "" }
+                                onClick={(event) => setGusty(!gusty)}
+                                >
+                                    <IonLabel>{ gusty ? 'Yes' : 'No'}</IonLabel>
+                            </IonChip>
+                        </div>
                     </div>
                     <div className="input-group">
                         <label htmlFor="windStrength">Water Conditions</label>
