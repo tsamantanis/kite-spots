@@ -7,6 +7,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import Tabs from './containers/Tabs';
 
 /* Core CSS required for Ionic components to work properly */
@@ -33,6 +34,7 @@ const App: React.FC = () => (
         <IonReactRouter>
             <Switch>
                 <Route path="/login" component={SignIn} exact={true}/>
+                <Route path="/register" component={SignUp} exact={true}/>
                 <Route path="/" component={Tabs} />
             </Switch>
         </IonReactRouter>
