@@ -14,6 +14,7 @@ import { globeOutline, calendarOutline, personOutline } from 'ionicons/icons';
 import Map from './pages/Map';
 import Events from './pages/Events';
 import Account from './pages/Account';
+import SignIn from './pages/SignIn';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,6 +43,7 @@ const App: React.FC = () => (
                     <Route path="/map" component={Map} exact={true} />
                     <Route path="/events" component={Events} exact={true} />
                     <Route path="/account" component={Account} />
+                    <Route path="/signin" component={SignIn} />
                     <Route path="/" render={() => <Redirect to="/map" />} exact={true} />
                 </IonRouterOutlet>
                 <IonTabBar slot="bottom">
