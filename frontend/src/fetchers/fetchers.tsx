@@ -14,3 +14,11 @@ export async function getParams<T>(
     const { data } = await axios.get(path, params);
     return data;
 };
+
+export async function postBody<T>(
+    path: string,
+    body: object
+): Promise<T> {
+    const { data } = await axios.post(path, body);
+    return data;
+};

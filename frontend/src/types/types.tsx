@@ -1,3 +1,15 @@
+export interface UserLogin {
+    _id: string,
+    name: string,
+    email: string,
+    photo: string,
+    token: string
+}
+
+export interface UserLoginAPIResponse {
+    user: UserLogin
+}
+
 export interface Marker {
     _id: string,
     lat: number,

@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Marker, MarkerAPIResponse, Spot, SpotDetailsAPIResponse } from '../types/types';
-import { get, getParams } from '../fetchers/fetchers';
+import {
+    Marker,
+    MarkerAPIResponse,
+    Spot,
+    SpotDetailsAPIResponse,
+    UserLogin,
+    UserLoginAPIResponse
+ } from '../types/types';
+import { get, getParams, postBody } from '../fetchers/fetchers';
 
 export const useGetMarkers = () => {
     const [data, setData] = useState<Marker[]>([]);
@@ -28,6 +35,27 @@ export const useGetSpot = (markerId: string) => {
     useEffect(() => {
         getData()
     }, [])
+
+    return data;
+}
+
+export const usePostLogin = (email: string, password: string, submit: boolean) => {
+    const [data, setData] = useState<UserLogin>();
+
+    const getData = async () => {
+        const { user } = await postBody<UserLoginAPIResponse>(process.env.REACT_APP_URI + '/user/login', {
+            user: {
+                email: email,
+                password: password
+            }
+        });
+        setData(user)
+    }
+
+    useEffect(() => {
+        if (submit)
+            getData()
+    }, [submit])
 
     return data;
 }

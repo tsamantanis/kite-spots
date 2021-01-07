@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { IonContent, IonGrid, IonPage, IonRow, IonCol } from '@ionic/react';
+import { usePostLogin } from '../custom-hooks/use-queries';
 
 import './LoginRegister.css';
 
@@ -7,10 +9,13 @@ const SignIn: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const [submit, setSubmit] = useState<boolean>(false);
+
+    const user = usePostLogin(email, password, submit);
 
     const login = (event: React.FormEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        if (!email.match('/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/')) {
+        if (!email.match(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))) {
             setErrorMessage("Email is not valid");
             return
         }
@@ -18,8 +23,12 @@ const SignIn: React.FC = () => {
             setErrorMessage("Password must be at least 8 characters");
             return
         }
+        setSubmit(true);
+    }
 
-        // usePostLogin(email, password);
+    if (typeof user !== 'undefined' && user !== null) {
+        localStorage.setItem('token', user.token);
+        return (<Redirect to="/map" />);
     }
 
     return (
