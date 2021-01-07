@@ -16,7 +16,7 @@ router.post('/login',[
     passport.authenticate('local', { session: false }, function(err, user, info) {
         if (err) { return next(err); }
 
-        if (!user) { return res.sendStatus(403); }
+        if (!user) { return res.json({user: null}) }
 
         return res.json({user: user.toAuthJSON()});
     })(req, res, next);

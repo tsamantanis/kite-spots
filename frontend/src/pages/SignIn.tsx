@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { IonContent, IonGrid, IonPage, IonRow, IonCol } from '@ionic/react';
 import { usePostLogin } from '../custom-hooks/use-queries';
@@ -26,6 +26,10 @@ const SignIn: React.FC = () => {
         setSubmit(true);
     }
 
+    useEffect(() => {
+        setSubmit(false);
+    }, [user])
+    console.log(user);
     if (typeof user !== 'undefined' && user !== null) {
         localStorage.setItem('token', user.token);
         return (<Redirect to="/map" />);
@@ -57,7 +61,7 @@ const SignIn: React.FC = () => {
                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setPassword(event.target.value); setErrorMessage('')}}
                     />
                     {errorMessage.length > 0 && <small>{errorMessage}</small>}
-
+                    { user === null && <small>Invalid email and/or password</small> }
                 </div>
                 <button onClick={login}>Sign In</button>
             </form>
