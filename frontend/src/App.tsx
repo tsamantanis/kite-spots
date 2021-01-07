@@ -1,20 +1,13 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import {
     IonApp,
     IonIcon,
-    IonLabel,
-    IonRouterOutlet,
-    IonTabBar,
-    IonTabButton,
-    IonTabs
+    IonLabel
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { globeOutline, calendarOutline, personOutline } from 'ionicons/icons';
-import Map from './pages/Map';
-import Events from './pages/Events';
-import Account from './pages/Account';
 import SignIn from './pages/SignIn';
+import Tabs from './containers/Tabs';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,26 +31,10 @@ import './theme/variables.css';
 const App: React.FC = () => (
     <IonApp>
         <IonReactRouter>
-            <IonTabs>
-                <IonRouterOutlet>
-                    <Route path="/map" component={Map} exact={true} />
-                    <Route path="/events" component={Events} exact={true} />
-                    <Route path="/account" component={Account} />
-                    <Route path="/signin" component={SignIn} />
-                    <Route path="/" render={() => <Redirect to="/map" />} exact={true} />
-                </IonRouterOutlet>
-                <IonTabBar slot="bottom">
-                    <IonTabButton tab="map" href="/map">
-                        <IonIcon icon={globeOutline} />
-                    </IonTabButton>
-                    <IonTabButton tab="events" href="/events">
-                        <IonIcon icon={calendarOutline} />
-                    </IonTabButton>
-                    <IonTabButton tab="account" href="/account">
-                        <IonIcon icon={personOutline} />
-                    </IonTabButton>
-                </IonTabBar>
-            </IonTabs>
+            <Switch>
+                <Route path="/login" component={SignIn} exact={true}/>
+                <Route path="/" component={Tabs} />
+            </Switch>
         </IonReactRouter>
     </IonApp>
 );
