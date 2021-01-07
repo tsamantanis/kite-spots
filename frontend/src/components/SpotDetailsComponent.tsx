@@ -1,12 +1,12 @@
 import React from 'react';
-import { IonGrid, IonRow, IonCol, IonContent } from '@ionic/react';
+import { IonGrid, IonRow, IonCol, IonContent, IonChip, IonIcon, IonLabel } from '@ionic/react';
 import { SpotDetails } from '../types/types';
 import { useGetSpot } from '../custom-hooks/use-queries';
 
 import BottomSheet from './BottomSheet';
 
 import './SpotDetails.css';
-
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker }) => {
     const spot = useGetSpot(marker._id);
     if (spot) {
@@ -22,7 +22,21 @@ const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker }) => {
                         <IonRow>
                             <IonCol>
                                 <h4>Best Months:</h4>
-                                <span>{ spot.bestMonths.join(', ') }</span>
+                                { months.map((month) => {
+                                    return (
+                                        <IonChip
+                                            outline
+                                            color={
+                                                spot.bestMonths.length > 0 ?
+                                                spot.bestMonths.includes(month) ?
+                                                "success" : "warning" : ""
+                                            }
+                                            key={ month }
+                                            >
+                                            <IonLabel>{ month }</IonLabel>
+                                        </IonChip>
+                                    )
+                                })}
                             </IonCol>
                         </IonRow>
                         <IonRow>
