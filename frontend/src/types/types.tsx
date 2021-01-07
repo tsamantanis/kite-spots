@@ -17,7 +17,7 @@ export interface Spot {
     windDirection: string,
     gusty: boolean,
     water: Array<string>,
-    otherActions: Array<string>,
+    otherActivities: Array<string>,
 }
 
 export interface SpotDetails {
