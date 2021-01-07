@@ -15,7 +15,7 @@ const Map: React.FC = () => {
     const toggleSpotDetails = (marker: Marker) => {
         setShowSpotDetails(marker);
     }
-    console.log(showSpotDetails);
+
     return (
         <IonPage>
             <IonContent fullscreen>
