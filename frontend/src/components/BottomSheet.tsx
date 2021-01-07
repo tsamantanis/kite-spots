@@ -3,7 +3,11 @@ import { IonButton, IonCard } from '@ionic/react';
 import { createGesture, Gesture } from '@ionic/core';
 import './BottomSheet.css';
 
-const BottomSheet: React.FC = () => {
+interface BottomSheetProps {
+    content: object ;
+}
+
+const BottomSheet: React.FC<BottomSheetProps> = ({ content }) => {
     const drawerRef = useRef<HTMLIonCardElement | null>(null);
 
     useEffect(() => {
@@ -61,6 +65,7 @@ const BottomSheet: React.FC = () => {
                     className="button-light"
                 />
             </div>
+            { content }
         </IonCard>
     );
 };

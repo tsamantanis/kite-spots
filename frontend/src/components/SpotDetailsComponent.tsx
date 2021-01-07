@@ -8,11 +8,14 @@ import BottomSheet from './BottomSheet';
 const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker }) => {
     const spot = useGetSpot(marker._id);
     if (spot) {
-        // content
-
+        const content = (
+            <div className="container">
+                <h2>{ spot.name }</h2>
+            </div>
+        )
         return (
             <BottomSheet
-                // content={content}
+                content={content}
             />
         );
     } else
