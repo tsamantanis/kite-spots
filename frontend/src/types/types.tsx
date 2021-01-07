@@ -20,8 +20,12 @@ export interface Spot {
     otherActions: Array<string>,
 }
 
-export interface SpotAPIResponse {
-    data: Spot[]
+export interface SpotDetails {
+    marker: Marker
+}
+
+export interface SpotDetailsAPIResponse {
+    spot: Spot
 }
 
 export interface LeafletMapProps {
