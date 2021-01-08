@@ -117,8 +117,11 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
         setNewSpot(newSpotInfo)
         setSubmit(true)
     }
-
+    
     const spot = usePostNewSpot(newSpot, marker, submit);
+    if (typeof spot !== 'undefined') {
+        toggleShowModal();
+    }
     useEffect(() => {
         setSubmit(false);
     }, [newSpot])
