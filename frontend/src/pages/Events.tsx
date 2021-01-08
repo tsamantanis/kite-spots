@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid } from '@ionic/react';
+import { IonContent, IonPage, IonGrid } from '@ionic/react';
 import PageHeader from '../components/PageHeader';
 
 const Events: React.FC = () => {

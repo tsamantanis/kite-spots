@@ -1,22 +1,14 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonPage, IonGrid } from '@ionic/react';
+import PageHeader from '../components/PageHeader';
 
 const Account: React.FC = () => {
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>Account</IonTitle>
-                </IonToolbar>
-            </IonHeader>
             <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                    <IonToolbar>
-                        <IonTitle size="large">Account</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
-                <ExploreContainer name="Account" />
+                <IonGrid>
+                    <PageHeader header="Account" />
+                </IonGrid>
             </IonContent>
         </IonPage>
     );
