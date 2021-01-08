@@ -1,4 +1,4 @@
-export interface UserLogin {
+export interface User {
     _id: string,
     name: string,
     email: string,
@@ -6,8 +6,8 @@ export interface UserLogin {
     token: string
 }
 
-export interface UserLoginAPIResponse {
-    user: UserLogin
+export interface UserAPIResponse {
+    user: User
 }
 
 export interface Marker {

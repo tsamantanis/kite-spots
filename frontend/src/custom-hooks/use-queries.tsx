@@ -5,8 +5,8 @@ import {
     MarkersAPIResponse,
     Spot,
     SpotAPIResponse,
-    UserLogin,
-    UserLoginAPIResponse
+    User,
+    UserAPIResponse,
  } from '../types/types';
 import { get, getParams, postBody } from '../fetchers/fetchers';
 
@@ -41,11 +41,33 @@ export const useGetSpot = (markerId: string) => {
 }
 
 export const usePostLogin = (email: string, password: string, submit: boolean) => {
-    const [data, setData] = useState<UserLogin>();
+    const [data, setData] = useState<User>();
 
     const getData = async () => {
-        const { user } = await postBody<UserLoginAPIResponse>(process.env.REACT_APP_URI + '/user/login', {
+        const { user } = await postBody<UserAPIResponse>(process.env.REACT_APP_URI + '/user/login', {
             user: {
+                email: email,
+                password: password
+            }
+        });
+        setData(user)
+    }
+
+    useEffect(() => {
+        if (submit)
+            getData()
+    }, [submit])
+
+    return data;
+}
+
+export const usePostSignUp = (name: string, email: string, password: string, submit: boolean) => {
+    const [data, setData] = useState<User>();
+
+    const getData = async () => {
+        const { user } = await postBody<UserAPIResponse>(process.env.REACT_APP_URI + '/user/register', {
+            user: {
+                name: name,
                 email: email,
                 password: password
             }
