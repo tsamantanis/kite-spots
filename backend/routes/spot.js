@@ -37,7 +37,7 @@ router.post('/new', [
         spot.bestFor = req.body.spot.bestFor;
         spot.bestMonths = req.body.spot.bestMonths;
         spot.windSpeed = req.body.spot.windSpeed;
-        spot.windDirection = req.body.spot.windDirection;
+        spot.windDirections = req.body.spot.windDirections;
         spot.gusty = req.body.spot.gusty;
         spot.water = req.body.spot.water;
         spot.otherActivities = req.body.spot.otherActivities;
