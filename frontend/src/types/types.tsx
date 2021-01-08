@@ -47,5 +47,7 @@ export interface LeafletMapProps {
 }
 
 export interface NewSpotModalProps {
+    isOpen: boolean,
+    toggleShowModal: () => void,
     marker: Marker
 }

@@ -22,9 +22,7 @@ import months, {
 } from '../constants';
 import './NewSpotModal.css';
 
-export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
-    const [showModal, setShowModal] = useState<boolean>(true);
-
+export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowModal, marker }) => {
     const [name, setName] = useState<string>('');
     const [bestMonths, setBestMonths] = useState<Array<string>>([]);
     const [bestFor, setBestFor] = useState<string>('');
@@ -103,7 +101,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
     }
 
     return (
-        <IonModal isOpen={showModal}>
+        <IonModal isOpen={isOpen}>
             <div className="container new-spot-modal">
                 <h1>New Spot</h1>
                 <form>
@@ -279,7 +277,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                     <button onClick={submit}>Submit</button>
                 </form>
             </div>
-            <IonIcon icon={close} size="large" onClick={() => setShowModal(false)} />
+            <IonIcon icon={close} size="large" onClick={() => toggleShowModal()} />
         </IonModal>
     );
 };

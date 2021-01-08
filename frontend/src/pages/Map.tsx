@@ -41,12 +41,17 @@ const Map: React.FC = () => {
                 <IonToast
                     color="secondary"
                     isOpen={addSpot && typeof newSpotMarker === 'undefined'}
-                    onDidDismiss={() => setAddSpot(false)}
                     message="Click on the map to add the spot location"
                 />
             </IonContent>
             { typeof showSpotDetails !== 'undefined' && <SpotDetailsComponent marker={showSpotDetails}/> }
-            { typeof newSpotMarker !== 'undefined' && <NewSpotModal marker={newSpotMarker} /> }
+            { typeof newSpotMarker !== 'undefined'
+                && <NewSpotModal
+                    isOpen={addSpot}
+                    toggleShowModal={() => {setAddSpot(!addSpot); setNewSpotMarker(undefined)}}
+                    marker={newSpotMarker}
+                />
+            }
         </IonPage>
     );
 };
