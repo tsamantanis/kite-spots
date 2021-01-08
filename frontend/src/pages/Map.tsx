@@ -44,7 +44,7 @@ const Map: React.FC = () => {
                     message="Click on the map to add the spot location"
                 />
             </IonContent>
-            { typeof showSpotDetails !== 'undefined' && <SpotDetailsComponent marker={showSpotDetails}/> }
+            { typeof showSpotDetails !== 'undefined' && <SpotDetailsComponent marker={showSpotDetails} /> }
             { typeof newSpotMarker !== 'undefined'
                 && <NewSpotModal
                     isOpen={addSpot}
