@@ -30,7 +30,9 @@ router.get('/spot', [
 });
 
 router.post('/new', [
-    auth.required
+    auth.required,
+    body('marker.lat').not().isEmpty(),
+    body('marker.lng').not().isEmpty()
 ], function (req, res) {
     User.findById(req.payload.id).then(async function(user) {
         if (!user) { return res.sendStatus(401); }

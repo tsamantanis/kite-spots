@@ -66,7 +66,10 @@ export const usePostNewSpot = (spotObj: Spot | null, markerObj: Marker, submit: 
 
     const getData = async () => {
         const { marker } = await postBody<MarkerAPIResponse>(process.env.REACT_APP_URI + '/markers/new', {
-            markerObj
+            marker: {
+                lat: markerObj.lat,
+                lng: markerObj.lng
+            }
         });
         const { spot } = await postBody<SpotAPIResponse>(process.env.REACT_APP_URI + '/spots/new', {
             spot: {

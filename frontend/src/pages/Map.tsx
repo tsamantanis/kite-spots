@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { IonContent, IonFab, IonFabButton, IonPage, IonIcon, IonToast } from '@ionic/react';
 import { add, close } from 'ionicons/icons';
 
@@ -8,8 +9,6 @@ import LeafletMap from '../components/LeafletMap';
 import NewSpotModal from '../components/NewSpotModal';
 import SpotDetailsComponent from '../components/SpotDetailsComponent';
 import './Map.css';
-
-
 
 const Map: React.FC = () => {
     const [showSpotDetails, setShowSpotDetails] = useState<Marker>();
@@ -21,6 +20,9 @@ const Map: React.FC = () => {
 
     const toggleNewSpotMarker = (marker: Marker) => {
         setNewSpotMarker(marker);
+    }
+    if (localStorage.getItem('token') === null) {
+        return (<Redirect to="/login"/>);
     }
 
     return (

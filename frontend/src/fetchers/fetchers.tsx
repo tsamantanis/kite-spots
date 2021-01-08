@@ -1,4 +1,5 @@
 import axios from 'axios';
+const bearer = axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 export async function get<T>(
     path: string
