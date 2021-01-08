@@ -28,8 +28,12 @@ img {
     margin-top: -2rem;
     margin-bottom: -4rem;
 }
-div h1 {
+
+h1 {
     font-size: 3.5rem;
+}
+
+.container h1 {
     margin-bottom: 2rem;
     color: var(--ion-color-primary);
 }
@@ -74,4 +78,9 @@ button {
     form {
         max-width: 33% !important;
     }
+}
+
+hr {
+    border-top: 2px solid var(--ion-color-secondary);
+    width: 100%;
 }
