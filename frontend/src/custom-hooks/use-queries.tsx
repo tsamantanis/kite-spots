@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {
     Marker,
     MarkerAPIResponse,
+    MarkersAPIResponse,
     Spot,
     SpotAPIResponse,
     UserLogin,
@@ -13,7 +14,7 @@ export const useGetMarkers = () => {
     const [data, setData] = useState<Marker[]>([]);
 
     const getData = async () => {
-        const { markers } = await get<MarkerAPIResponse>(process.env.REACT_APP_URI + '/markers');
+        const { markers } = await get<MarkersAPIResponse>(process.env.REACT_APP_URI + '/markers');
         setData(markers)
     }
 
@@ -60,18 +61,32 @@ export const usePostLogin = (email: string, password: string, submit: boolean) =
     return data;
 }
 
-export const usePostNewSpot = (spotObj: object, submit: boolean) => {
+export const usePostNewSpot = (spotObj: Spot | null, markerObj: Marker, submit: boolean) => {
     const [data, setData] = useState<Spot>();
 
     const getData = async () => {
+        const { marker } = await postBody<MarkerAPIResponse>(process.env.REACT_APP_URI + '/markers/new', {
+            markerObj
+        });
         const { spot } = await postBody<SpotAPIResponse>(process.env.REACT_APP_URI + '/spots/new', {
-            spotObj
+            spot: {
+                location: marker._id,
+                name: spotObj !== null ? spotObj.name : '',
+                bestFor: spotObj !== null ? spotObj.bestFor : undefined,
+                bestMonths: spotObj !== null ? spotObj.bestMonths : undefined,
+                windSpeed: spotObj !== null ? spotObj.windSpeed : 0,
+                windDirections: spotObj !== null ? spotObj.windDirections : undefined,
+                gusty: spotObj !== null ? spotObj.gusty : undefined,
+                water: spotObj !== null ? spotObj.water : undefined,
+                otherActivities: spotObj !== null ? spotObj.otherActivities : undefined,
+            }
+
         });
         setData(spot)
     }
 
     useEffect(() => {
-        if (submit)
+        if (submit && spotObj !== null)
             getData()
     }, [submit])
 

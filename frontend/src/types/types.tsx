@@ -17,6 +17,10 @@ export interface Marker {
 }
 
 export interface MarkerAPIResponse {
+    marker: Marker
+}
+
+export interface MarkersAPIResponse {
     markers: Marker[]
 }
 

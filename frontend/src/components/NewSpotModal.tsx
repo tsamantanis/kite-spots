@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     IonModal,
     IonButton,
@@ -12,7 +12,8 @@ import {
 } from '@ionic/react';
 import { arrowDownOutline, close } from 'ionicons/icons';
 
-import { NewSpotModalProps } from '../types/types';
+import { usePostNewSpot } from '../custom-hooks/use-queries';
+import { NewSpotModalProps, Spot } from '../types/types';
 import months, {
     disciplines,
     windStrengths,
@@ -31,6 +32,9 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
     const [gusty, setGusty] = useState<boolean>(false);
     const [water, setWater] = useState<Array<string>>([]);
     const [otherActivities, setOtherActivities] = useState<Array<string>>([]);
+
+    const [newSpot, setNewSpot] = useState<Spot | null>(null);
+    const [submit, setSubmit] = useState<boolean>(false);
 
     const handleBestMonths = (event: React.MouseEvent<HTMLIonChipElement, MouseEvent>) => {
         const input = event.target as HTMLElement;
@@ -96,9 +100,28 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
         setOtherActivities([...updatedOtherActivities]);
     }
 
-    const submit = () => {
-        console.log('submit');
+    const createNewSpot = (event: React.FormEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        const newSpotInfo = {
+            _id: '',
+            location: '',
+            name: name,
+            bestFor: bestFor,
+            bestMonths: bestMonths,
+            windSpeed: windSpeed,
+            windDirections: selectedWindDirections,
+            gusty: gusty,
+            water: water,
+            otherActivities: otherActivities,
+        }
+        setNewSpot(newSpotInfo)
+        setSubmit(true)
     }
+
+    const spot = usePostNewSpot(newSpot, marker, submit);
+    useEffect(() => {
+        setSubmit(false);
+    }, [newSpot])
 
     return (
         <IonModal isOpen={isOpen}>
@@ -274,7 +297,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
                             </IonCol>
                         </div>
                     </div>
-                    <button onClick={submit}>Submit</button>
+                    <button onClick={createNewSpot}>Submit</button>
                 </form>
             </div>
             <IonIcon icon={close} size="large" onClick={() => toggleShowModal()} />
