@@ -1,5 +1,11 @@
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+export const disciplines = [
+    "Big Air",
+    "Freestyle",
+    "Freeride",
+    "Foil"
+]
 export const windStrengths = [
     {
         name: "Super Strong",

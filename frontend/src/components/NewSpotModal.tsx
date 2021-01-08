@@ -14,6 +14,7 @@ import { arrowDownOutline } from 'ionicons/icons';
 
 import { NewSpotModalProps } from '../types/types';
 import months, {
+    disciplines,
     windStrengths,
     windDirections,
     waterConditions,
@@ -26,6 +27,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
 
     const [name, setName] = useState<string>('');
     const [bestMonths, setBestMonths] = useState<Array<string>>([]);
+    const [bestFor, setBestFor] = useState<string>('');
     const [windSpeed, setWindSpeed] = useState<number>(0);
     const [selectedWindDirections, setSelectedWindDirections] = useState<Array<string>>([]);
     const [gusty, setGusty] = useState<boolean>(false);
@@ -42,6 +44,14 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
             updatedBestMonths.push(input.innerText);
         }
         setBestMonths([...updatedBestMonths]);
+    }
+
+    const handleBestFor = (event: React.MouseEvent<HTMLIonChipElement, MouseEvent>) => {
+        const input = event.target as HTMLElement;
+        let updatedBestFor = '';
+        if (bestFor !== input.innerText)
+            updatedBestFor = input.innerText;
+        setBestFor(updatedBestFor);
     }
 
     const handleWindSpeed = (event: React.MouseEvent<HTMLIonChipElement, MouseEvent>) => {
@@ -125,6 +135,29 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                                             onClick={(event) => handleBestMonths(event)}
                                             >
                                                 <IonLabel>{ month }</IonLabel>
+                                        </IonChip>
+                                    )
+                                })}
+                            </IonCol>
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="bestFor">Best For</label>
+                        <div>
+                            <IonCol>
+                                { disciplines.map((discipline) => {
+                                    return (
+                                        <IonChip
+                                            outline
+                                            color={
+                                                bestFor !== '' ?
+                                                bestFor === discipline ?
+                                                "success" : "warning" : ""
+                                            }
+                                            key={ discipline }
+                                            onClick={(event) => handleBestFor(event)}
+                                            >
+                                                <IonLabel>{ discipline }</IonLabel>
                                         </IonChip>
                                     )
                                 })}
