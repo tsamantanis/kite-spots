@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { IonContent, IonFab, IonFabButton, IonPage, IonIcon, IonToast } from '@ionic/react';
 import { add, close } from 'ionicons/icons';
 
@@ -20,9 +19,6 @@ const Map: React.FC = () => {
 
     const toggleNewSpotMarker = (marker: Marker) => {
         setNewSpotMarker(marker);
-    }
-    if (localStorage.getItem('token') === null) {
-        return (<Redirect to="/login"/>);
     }
 
     return (

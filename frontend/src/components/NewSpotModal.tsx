@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import {
     IonModal,
     IonButton,
@@ -117,7 +118,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
         setNewSpot(newSpotInfo)
         setSubmit(true)
     }
-    
+
     const spot = usePostNewSpot(newSpot, marker, submit);
     if (typeof spot !== 'undefined') {
         toggleShowModal();
@@ -125,6 +126,10 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
     useEffect(() => {
         setSubmit(false);
     }, [newSpot])
+
+    if (localStorage.getItem('token') === null) {
+        return (<Redirect to="/login"/>);
+    }
 
     return (
         <IonModal isOpen={isOpen}>
