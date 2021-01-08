@@ -10,7 +10,7 @@ import {
  } from '../types/types';
 import { get, getParams, postBody } from '../fetchers/fetchers';
 
-export const useGetMarkers = () => {
+export const useGetMarkers = (reloadMarkers: boolean) => {
     const [data, setData] = useState<Marker[]>([]);
 
     const getData = async () => {
@@ -20,7 +20,7 @@ export const useGetMarkers = () => {
 
     useEffect(() => {
         getData()
-    }, [])
+    }, [reloadMarkers])
 
     return data;
 }

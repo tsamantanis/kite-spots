@@ -47,12 +47,14 @@ export interface SpotAPIResponse {
 
 export interface LeafletMapProps {
     addSpot: boolean,
+    reloadMarkers: boolean,
     toggleNewSpotMarker: (marker: Marker) => void,
     toggleSpotDetails: (marker: Marker) => void,
 }
 
 export interface NewSpotModalProps {
     isOpen: boolean,
+    toggleReloadMarkers: () => void,
     toggleShowModal: () => void,
     marker: Marker
 }

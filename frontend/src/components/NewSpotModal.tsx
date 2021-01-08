@@ -24,7 +24,7 @@ import months, {
 } from '../constants';
 import './NewSpotModal.css';
 
-export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowModal, marker }) => {
+export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleReloadMarkers, toggleShowModal, marker }) => {
     const [name, setName] = useState<string>('');
     const [bestMonths, setBestMonths] = useState<Array<string>>([]);
     const [bestFor, setBestFor] = useState<string>('');
@@ -122,6 +122,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
     const spot = usePostNewSpot(newSpot, marker, submit);
     if (typeof spot !== 'undefined') {
         toggleShowModal();
+        toggleReloadMarkers();
     }
     useEffect(() => {
         setSubmit(false);

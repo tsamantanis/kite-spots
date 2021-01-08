@@ -13,6 +13,7 @@ const Map: React.FC = () => {
     const [showSpotDetails, setShowSpotDetails] = useState<Marker>();
     const [newSpotMarker, setNewSpotMarker] = useState<Marker>();
     const [addSpot, setAddSpot] = useState<boolean>(false);
+    const [reloadMarkers, setReloadMarkers] = useState<boolean>(false);
     const toggleSpotDetails = (marker: Marker) => {
         setShowSpotDetails(marker);
     }
@@ -33,6 +34,7 @@ const Map: React.FC = () => {
                 </IonFab>
                 <LeafletMap
                     addSpot={ addSpot }
+                    reloadMarkers={ reloadMarkers }
                     toggleSpotDetails={ toggleSpotDetails }
                     toggleNewSpotMarker={ toggleNewSpotMarker }
                 />
@@ -46,6 +48,7 @@ const Map: React.FC = () => {
             { typeof newSpotMarker !== 'undefined'
                 && <NewSpotModal
                     isOpen={addSpot}
+                    toggleReloadMarkers={() => setReloadMarkers(!reloadMarkers)}
                     toggleShowModal={() => {setAddSpot(!addSpot); setNewSpotMarker(undefined)}}
                     marker={newSpotMarker}
                 />

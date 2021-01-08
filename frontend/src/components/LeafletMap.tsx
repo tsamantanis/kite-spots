@@ -15,9 +15,9 @@ const zoom:number = 7;
 //   iconSize: [25, 25]
 // });
 
-const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, toggleSpotDetails, toggleNewSpotMarker }) => {
+const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleSpotDetails, toggleNewSpotMarker }) => {
     // const [markers, setMarkers] = useState<Array<any>>([])
-    const markers = useGetMarkers();
+    const markers = useGetMarkers(reloadMarkers);
 
     useIonViewDidEnter(() => {
         window.dispatchEvent(new Event('resize'));
