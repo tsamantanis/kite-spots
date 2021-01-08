@@ -9,8 +9,6 @@ import { useGetMarkers } from '../custom-hooks/use-queries';
 const defaultLatLng: LatLngTuple = [38.2749497, 23.8102717];
 const defaultZoom:number = 7;
 
-// use this for custom marker icon
-
 const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleSpotDetails, toggleNewSpotMarker }) => {
     const [zoom, setZoom] = useState<number>(defaultZoom)
     const markers = useGetMarkers(reloadMarkers);
@@ -50,6 +48,7 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
                 markers.map(marker => {
                     return (
                         <LeafletMarker
+                            riseOnHover={true}
                             key={marker._id}
                             position={[
                                 marker.lat,
@@ -58,7 +57,7 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
                             onClick={() => {
                                 toggleSpotDetails(marker);
                             }}
-                            icon={markerIcon} // use this for custom icon
+                            icon={markerIcon}
                         />
                     )
                 })
