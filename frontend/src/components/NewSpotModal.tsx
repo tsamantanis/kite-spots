@@ -229,7 +229,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
                                             key={ windDirection.name }
                                             onClick={(event) => handleSelectedWindDirections(event)}
                                             >
-                                                <IonIcon icon={ arrowDownOutline } style={{transform: `rotate(${windDirection.rotation})`}}/>
+                                                <IonIcon size="small" icon={ arrowDownOutline } style={{transform: `rotate(${windDirection.rotation})`}}/>
                                                 <IonLabel>{ windDirection.name }</IonLabel>
                                         </IonChip>
                                     )
@@ -300,7 +300,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ isOpen, toggleShowMo
                     <button onClick={createNewSpot}>Submit</button>
                 </form>
             </div>
-            <IonIcon icon={close} size="large" onClick={() => toggleShowModal()} />
+            <IonIcon className="modal-close" icon={close} size="large" onClick={() => toggleShowModal()} />
         </IonModal>
     );
 };

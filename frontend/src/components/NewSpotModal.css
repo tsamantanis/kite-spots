@@ -11,7 +11,7 @@ ion-col ion-chip {
     margin-left: -3px;
 }
 
-ion-modal ion-icon {
+ion-modal .modal-close {
     position: absolute;
     right: 0rem;
     margin-right: 1rem;
