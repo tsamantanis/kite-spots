@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
 import { Map, Marker as LeafletMarker, Popup, TileLayer } from 'react-leaflet';
 import { useIonViewDidEnter } from '@ionic/react';
-import { LatLngTuple, LeafletMouseEvent } from 'leaflet';
+import { LatLngTuple, LeafletMouseEvent, ZoomAnimEvent, Icon } from 'leaflet';
 
 import { LeafletMapProps } from '../types/types';
 import { useGetMarkers } from '../custom-hooks/use-queries';
 
 const defaultLatLng: LatLngTuple = [38.2749497, 23.8102717];
-const zoom:number = 7;
+const defaultZoom:number = 7;
 
 // use this for custom marker icon
-// export const markerIcon = new Icon({
-//   iconUrl: "/skateboarding.svg",
-//   iconSize: [25, 25]
-// });
 
 const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleSpotDetails, toggleNewSpotMarker }) => {
-    // const [markers, setMarkers] = useState<Array<any>>([])
+    const [zoom, setZoom] = useState<number>(defaultZoom)
     const markers = useGetMarkers(reloadMarkers);
 
     useIonViewDidEnter(() => {
@@ -33,12 +29,18 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
         }
     }
 
+    const markerIcon = new Icon({
+        iconUrl: "/assets/icon/location.svg",
+        iconSize: [50, 50],
+        iconAnchor: [25, zoom > 15 ? 50 : 68 + defaultZoom - zoom]
+    });
     return (
         <Map
             id="mapId"
             center={defaultLatLng}
-            zoom={zoom}
+            zoom={defaultZoom}
             onClick={addMarker}
+            onZoomEnd={(e: ZoomAnimEvent) => setZoom(e.target._animateToZoom)}
         >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -56,7 +58,7 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
                             onClick={() => {
                                 toggleSpotDetails(marker);
                             }}
-                            // icon={markerIcon} // use this for custom icon
+                            icon={markerIcon} // use this for custom icon
                         />
                     )
                 })
