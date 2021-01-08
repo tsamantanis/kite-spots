@@ -10,7 +10,7 @@ import {
     IonCol,
     IonIcon
 } from '@ionic/react';
-import { arrowDownOutline } from 'ionicons/icons';
+import { arrowDownOutline, close } from 'ionicons/icons';
 
 import { NewSpotModalProps } from '../types/types';
 import months, {
@@ -279,7 +279,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                     <button onClick={submit}>Submit</button>
                 </form>
             </div>
-            <IonButton onClick={() => setShowModal(false)}>Cancel</IonButton>
+            <IonIcon icon={close} size="large" onClick={() => setShowModal(false)} />
         </IonModal>
     );
 };

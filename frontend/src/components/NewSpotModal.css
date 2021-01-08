@@ -10,3 +10,14 @@ ion-col ion-chip:first-child {
 ion-col ion-chip {
     margin-left: -3px;
 }
+
+ion-modal ion-icon {
+    position: absolute;
+    right: 0rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+ion-modal ion-icon:hover {
+    cursor: pointer;
+}
