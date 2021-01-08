@@ -3,7 +3,7 @@ import {
     Marker,
     MarkerAPIResponse,
     Spot,
-    SpotDetailsAPIResponse,
+    SpotAPIResponse,
     UserLogin,
     UserLoginAPIResponse
  } from '../types/types';
@@ -28,7 +28,7 @@ export const useGetSpot = (markerId: string) => {
     const [data, setData] = useState<Spot>();
 
     const getData = async () => {
-        const { spot } = await getParams<SpotDetailsAPIResponse>(process.env.REACT_APP_URI + '/markers/spot', {params: {id: markerId.toString()}});
+        const { spot } = await getParams<SpotAPIResponse>(process.env.REACT_APP_URI + '/markers/spot', {params: {id: markerId.toString()}});
         setData(spot)
     }
 
@@ -50,6 +50,24 @@ export const usePostLogin = (email: string, password: string, submit: boolean) =
             }
         });
         setData(user)
+    }
+
+    useEffect(() => {
+        if (submit)
+            getData()
+    }, [submit])
+
+    return data;
+}
+
+export const usePostNewSpot = (spotObj: object, submit: boolean) => {
+    const [data, setData] = useState<Spot>();
+
+    const getData = async () => {
+        const { spot } = await postBody<SpotAPIResponse>(process.env.REACT_APP_URI + '/spots/new', {
+            spotObj
+        });
+        setData(spot)
     }
 
     useEffect(() => {

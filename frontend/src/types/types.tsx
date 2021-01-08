@@ -37,7 +37,7 @@ export interface SpotDetails {
     marker: Marker
 }
 
-export interface SpotDetailsAPIResponse {
+export interface SpotAPIResponse {
     spot: Spot
 }
 
