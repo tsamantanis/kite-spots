@@ -34,8 +34,9 @@ router.post('/new', [
         spot.name = req.body.spot.name;
         spot.location = mongoose.Types.ObjectId(req.body.spot.location);
         // ^ Execute /new route for marker and return id
+        spot.bestFor = req.body.spot.bestFor;
         spot.bestMonths = req.body.spot.bestMonths;
-        spot.windStregth = req.body.spot.windStregth;
+        spot.windSpeed = req.body.spot.windSpeed;
         spot.windDirection = req.body.spot.windDirection;
         spot.gusty = req.body.spot.gusty;
         spot.water = req.body.spot.water;
