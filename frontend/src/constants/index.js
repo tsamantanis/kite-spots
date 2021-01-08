@@ -48,27 +48,27 @@ export const windDirections = [
     },
     {
         name: 'E',
-        rotation: '270deg'
-    },
-    {
-        name: 'W',
         rotation: '90deg'
     },
     {
-        name: 'NE',
-        rotation: '315deg'
+        name: 'W',
+        rotation: '270deg'
     },
     {
-        name: 'NW',
+        name: 'NE',
         rotation: '45deg'
     },
     {
+        name: 'NW',
+        rotation: '315deg'
+    },
+    {
         name: 'SE',
-        rotation: '225deg'
+        rotation: '135deg'
     },
     {
         name: 'SW',
-        rotation: '135deg'
+        rotation: '225deg'
     }
 ];
 
