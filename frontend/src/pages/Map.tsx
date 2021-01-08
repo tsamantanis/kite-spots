@@ -40,7 +40,7 @@ const Map: React.FC = () => {
                 />
                 <IonToast
                     color="secondary"
-                    isOpen={addSpot}
+                    isOpen={addSpot && typeof newSpotMarker === 'undefined'}
                     onDidDismiss={() => setAddSpot(false)}
                     message="Click on the map to add the spot location"
                 />
