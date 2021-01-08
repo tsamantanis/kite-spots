@@ -2,3 +2,11 @@
     overflow-y: scroll;
     height: 90vh;
 }
+
+ion-col ion-chip:first-child {
+    margin-left: -7px;
+}
+
+ion-col ion-chip {
+    margin-left: -3px;
+}

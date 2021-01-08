@@ -13,7 +13,12 @@ import {
 import { arrowDownOutline } from 'ionicons/icons';
 
 import { NewSpotModalProps } from '../types/types';
-import months, { windDirections, waterConditions } from '../constants';
+import months, {
+    windStrengths,
+    windDirections,
+    waterConditions,
+    activities
+} from '../constants';
 import './NewSpotModal.css';
 
 export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
@@ -21,7 +26,7 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
 
     const [name, setName] = useState<string>('');
     const [bestMonths, setBestMonths] = useState<Array<string>>([]);
-    const [windStrength, setWindStrength] = useState<string>('');
+    const [windSpeed, setWindSpeed] = useState<number>(0);
     const [selectedWindDirections, setSelectedWindDirections] = useState<Array<string>>([]);
     const [gusty, setGusty] = useState<boolean>(false);
     const [water, setWater] = useState<Array<string>>([]);
@@ -37,6 +42,14 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
             updatedBestMonths.push(input.innerText);
         }
         setBestMonths([...updatedBestMonths]);
+    }
+
+    const handleWindSpeed = (event: React.MouseEvent<HTMLIonChipElement, MouseEvent>) => {
+        const input = event.target as HTMLElement;
+        let updatedWindSpeed = 0;
+        if (windSpeed !== parseInt(input.id))
+            updatedWindSpeed = parseInt(input.id);
+        setWindSpeed(updatedWindSpeed);
     }
 
     const handleSelectedWindDirections = (event: React.MouseEvent<HTMLIonChipElement, MouseEvent>) => {
@@ -61,6 +74,18 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
             updatedWater.push(input.innerText);
         }
         setWater([...updatedWater]);
+    }
+
+    const handleOtherActivities = (event: React.MouseEvent<HTMLIonChipElement, MouseEvent>) => {
+        const input = event.target as HTMLElement;
+        let updatedOtherActivities = otherActivities;
+        if (otherActivities.includes(input.innerText)) {
+            const index = otherActivities.indexOf(input.innerText, 0);
+            updatedOtherActivities.splice(index, 1)
+        } else {
+            updatedOtherActivities.push(input.innerText);
+        }
+        setOtherActivities([...updatedOtherActivities]);
     }
 
     const submit = () => {
@@ -107,10 +132,35 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                         </div>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="windStrength">Wind Strength</label>
+                        <label htmlFor="windSpeed">Wind Speed</label>
+                        <div>
+                            <IonCol>
+                                { windStrengths.map((windStrength) => {
+                                    return (
+                                        <IonChip
+                                            outline
+                                            color={
+                                                windSpeed !== 0 ?
+                                                windSpeed === windStrength.speed ?
+                                                "success" : "warning" : ""
+                                            }
+                                            id={ windStrength.speed.toString() }
+                                            key={ windStrength.name }
+                                            onClick={(event) => handleWindSpeed(event)}
+                                            >
+                                                <IonLabel
+                                                    id={ windStrength.speed.toString() }
+                                                >
+                                                    { windStrength.name + ' (' + windStrength.speed +'+ kts)' }
+                                                </IonLabel>
+                                        </IonChip>
+                                    )
+                                })}
+                            </IonCol>
+                        </div>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="windStrength">Wind Direction</label>
+                        <label htmlFor="windDirection">Wind Direction</label>
                         <div>
                             <IonCol>
                                 { windDirections.map((windDirection) => {
@@ -134,19 +184,21 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                         </div>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="windStrength">Is it gusty?</label>
+                        <label htmlFor="gusty">Is it gusty?</label>
                         <div>
-                            <IonChip
-                                outline
-                                color={ gusty ? "success" : "" }
-                                onClick={(event) => setGusty(!gusty)}
-                                >
-                                    <IonLabel>{ gusty ? 'Yes' : 'No'}</IonLabel>
-                            </IonChip>
+                            <IonCol>
+                                <IonChip
+                                    outline
+                                    color={ gusty ? "success" : "" }
+                                    onClick={(event) => setGusty(!gusty)}
+                                    >
+                                        <IonLabel>{ gusty ? 'Yes' : 'No'}</IonLabel>
+                                </IonChip>
+                            </IonCol>
                         </div>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="windStrength">Water Conditions</label>
+                        <label htmlFor="waterConditions">Water Conditions</label>
                         <div>
                             <IonCol>
                                 { waterConditions.map((condition) => {
@@ -162,6 +214,29 @@ export const NewSpotModal: React.FC<NewSpotModalProps> = ({ marker }) => {
                                             onClick={(event) => handleWater(event)}
                                             >
                                                 <IonLabel>{ condition }</IonLabel>
+                                        </IonChip>
+                                    )
+                                })}
+                            </IonCol>
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="otherActivities">Other Activities</label>
+                        <div>
+                            <IonCol>
+                                { activities.map((activity) => {
+                                    return (
+                                        <IonChip
+                                            outline
+                                            color={
+                                                otherActivities.length > 0 ?
+                                                otherActivities.includes(activity) ?
+                                                "success" : "warning" : ""
+                                            }
+                                            key={ activity }
+                                            onClick={(event) => handleOtherActivities(event)}
+                                            >
+                                                <IonLabel>{ activity }</IonLabel>
                                         </IonChip>
                                     )
                                 })}
