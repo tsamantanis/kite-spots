@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { IonContent, IonGrid, IonPage, IonRow, IonCol } from '@ionic/react';
+import { IonContent, IonGrid, IonPage, IonRow, IonCol, IonRouterLink } from '@ionic/react';
 import { usePostLogin } from '../custom-hooks/use-queries';
 
 import './LoginRegister.css';
@@ -64,6 +64,7 @@ const SignIn: React.FC = () => {
                     { user === null && <small>Invalid email and/or password</small> }
                 </div>
                 <button onClick={login}>Sign In</button>
+                <IonRouterLink href="/register">Don't have an account yet?</IonRouterLink>
             </form>
         </div>
     );
