@@ -1,6 +1,6 @@
 # Kitesurfing Spots App
 
-<!-- ![](./Cover.png) -->
+![](./frontend/public/assets/Illustration/Globe.svg)
 
 Kite spots helps kitesurfers find kitesurfing spots and events near them with a mobile first design web application.
 
