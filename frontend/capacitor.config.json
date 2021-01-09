@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "kite-spots-greece",
+  "appName": "kite-spots",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
