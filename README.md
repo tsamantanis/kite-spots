@@ -6,8 +6,8 @@ Kite spots helps kitesurfers find kitesurfing spots and events near them with a 
 
 # Table of contents
 
--   [Project Title](#project-title)
--   [Demo-Preview](#demo-preview)
+-   [Kite Spots App](#kite-spots-app)
+-   [Live Preview](#live-preview)
 -   [Table of contents](#table-of-contents)
 -   [Installation](#installation)
 -   [Usage](#usage)
