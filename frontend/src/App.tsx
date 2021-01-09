@@ -5,7 +5,7 @@ import {
     IonIcon,
     IonLabel
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { IonReactHashRouter } from '@ionic/react-router';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Tabs from './containers/Tabs';
@@ -32,13 +32,13 @@ import './theme/forms.css';
 
 const App: React.FC = () => (
     <IonApp>
-        <IonReactRouter>
+        <IonReactHashRouter>
             <Switch>
                 <Route path="/login" component={SignIn} exact={true}/>
                 <Route path="/register" component={SignUp} exact={true}/>
                 <Route path="/" component={Tabs} />
             </Switch>
-        </IonReactRouter>
+        </IonReactHashRouter>
     </IonApp>
 );
 

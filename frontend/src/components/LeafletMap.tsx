@@ -44,7 +44,7 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            {markers.length > 0 ?
+            {typeof markers !== 'undefined' && markers.length > 0 ?
                 markers.map(marker => {
                     return (
                         <LeafletMarker
