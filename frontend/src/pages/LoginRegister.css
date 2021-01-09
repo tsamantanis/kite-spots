@@ -12,3 +12,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.container button {
+    margin-bottom: 1rem;
+}
+
+ion-router-link {
+    display: flex;
+    justify-content: center;
+}
