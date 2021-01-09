@@ -14,7 +14,7 @@ Kite spots helps kitesurfers find kitesurfing spots and events near them with a 
 
 # Live Preview
 
-[Live Preview](https://tsamantanis.github.io/kite-spots/)
+[Live Preview](https://kite-spots.netlify.app)
 
 # Installation
 
