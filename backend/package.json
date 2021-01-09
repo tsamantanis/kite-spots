@@ -1,7 +1,7 @@
 {
-  "name": "kite-spots-greece backend",
+  "name": "kite-spots-backend",
   "version": "0.0.1",
-  "description": "kite-spots-greece MongoDB Atlas - Express - Reactjs - Nodejs Backend",
+  "description": "kite-spots MongoDB Atlas - Express - Reactjs - Nodejs Backend",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
