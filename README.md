@@ -14,7 +14,7 @@ Kite spots helps kitesurfers find kitesurfing spots and events near them with a 
 
 # Live Preview
 
-[Live Preview](https://tsamantanis.github.io/kite-spots-greece/)
+[Live Preview](https://tsamantanis.github.io/kite-spots/)
 
 # Installation
 
@@ -22,9 +22,9 @@ Kite spots helps kitesurfers find kitesurfing spots and events near them with a 
 
 To use this project, first clone the repo on your device using the commands below:
 
-`git clone https://github.com/tsamantanis/kite-spots-greece.git`
+`git clone https://github.com/tsamantanis/kite-spots.git`
 
-`cd kite-spots-greece`
+`cd kite-spots`
 
 ## Frontend
 
