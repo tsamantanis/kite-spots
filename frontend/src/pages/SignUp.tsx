@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { IonContent, IonGrid, IonPage, IonRow, IonCol } from '@ionic/react';
+import { IonContent, IonGrid, IonPage, IonRow, IonCol, IonRouterLink } from '@ionic/react';
 import { usePostSignUp } from '../custom-hooks/use-queries';
 
 import './LoginRegister.css';
@@ -79,6 +79,7 @@ const SignUp: React.FC = () => {
                     { user === null && <small>An error occurred. Please try again.</small> }
                 </div>
                 <button onClick={signUp}>Sign Up</button>
+                <IonRouterLink href="/login">Already have an account?</IonRouterLink>
             </form>
         </div>
     );
