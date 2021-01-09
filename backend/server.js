@@ -14,7 +14,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const corsOptions = {
-    origin: ['http://localhost:5000', 'http://localhost:8100', 'https://kite-spots.netlify.app'],
+    origin: ['http://localhost:5000', 'http://localhost:8100', 'https://kite-spots.netlify.app', 'https://kite-spots.netlify.app/'],
     credentials: true,
 }
 app.use(cors(corsOptions));
