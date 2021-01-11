@@ -38,7 +38,7 @@ const SignIn: React.FC = () => {
 
     return (
         <div className="container center-items">
-            <IonRouterLink href="/map">
+            <IonRouterLink href="/#/map">
                 <IonIcon
                     icon={close}
                     size="large"
