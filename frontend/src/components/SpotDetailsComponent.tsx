@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { IonGrid, IonRow, IonCol, IonContent, IonChip, IonIcon, IonLabel } from '@ionic/react';
 import { arrowDownOutline, close } from 'ionicons/icons';
 
@@ -15,8 +15,17 @@ import months, {
 import './SpotDetails.css';
 
 const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker }) => {
+    const [showSpotDetails, setShowSpotDetails] = useState(false);
     const spot = useGetSpot(marker._id);
-    if (spot) {
+
+    const toggleShowSpotDetails = () => {
+        setShowSpotDetails(!showSpotDetails);
+    }
+
+    useEffect(() => {
+        toggleShowSpotDetails();
+    }, [marker]);
+    if (spot && showSpotDetails) {
         const content = (
             <div className="spot-details-content">
                 <IonContent>
@@ -168,6 +177,7 @@ const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker }) => {
         return (
             <BottomSheet
                 content={content}
+                toggleShowBottomSheet={toggleShowSpotDetails}
             />
         );
     } else

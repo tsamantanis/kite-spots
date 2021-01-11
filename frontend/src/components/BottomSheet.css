@@ -24,3 +24,14 @@
     width: 25% !important;
     height: 8px;
 }
+
+.close-icon {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    z-index: 2;
+}
+
+.close-icon:hover {
+    cursor: pointer;
+}

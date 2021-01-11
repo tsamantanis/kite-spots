@@ -1,13 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { IonButton, IonCard } from '@ionic/react';
+import { IonButton, IonCard, IonIcon } from '@ionic/react';
+import { close } from 'ionicons/icons';
 import { createGesture, Gesture } from '@ionic/core';
 import './BottomSheet.css';
 
 interface BottomSheetProps {
-    content: object ;
+    content: object,
+    toggleShowBottomSheet: () => void
 }
 
-const BottomSheet: React.FC<BottomSheetProps> = ({ content }) => {
+const BottomSheet: React.FC<BottomSheetProps> = ({ content, toggleShowBottomSheet }) => {
     const drawerRef = useRef<HTMLIonCardElement | null>(null);
 
     // useEffect(() => {
@@ -58,6 +60,13 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ content }) => {
     };
     return (
         <IonCard className="bottom-drawer" ref={drawerRef}>
+            <IonIcon
+                icon={close}
+                size="large"
+                className="close-icon"
+                color="light"
+                onClick={toggleShowBottomSheet}
+            />
             <div>
                 <IonButton
                     size="small"
