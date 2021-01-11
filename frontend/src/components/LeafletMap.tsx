@@ -7,6 +7,7 @@ import { LatLngTuple, LeafletMouseEvent, ZoomAnimEvent, Icon } from 'leaflet';
 
 import { LeafletMapProps, Marker } from '../types/types';
 import { useGetMarkers } from '../custom-hooks/use-queries';
+import './LeafletMap.css';
 
 const defaultLatLng: LatLngTuple = [38.2749497, 23.8102717];
 const defaultZoom:number = 7;
