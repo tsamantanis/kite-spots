@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Map, Marker as LeafletMarker, Popup, TileLayer } from 'react-leaflet';
 import { useIonViewDidEnter } from '@ionic/react';
+import { NewSpotModalProps, Spot } from '../types/types';
 import { LatLngTuple, LeafletMouseEvent, ZoomAnimEvent, Icon } from 'leaflet';
 
-import { LeafletMapProps } from '../types/types';
+import { LeafletMapProps, Marker } from '../types/types';
 import { useGetMarkers } from '../custom-hooks/use-queries';
 
 const defaultLatLng: LatLngTuple = [38.2749497, 23.8102717];
 const defaultZoom:number = 7;
 
-const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleSpotDetails, toggleNewSpotMarker }) => {
+const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleSpotDetails, toggleNewSpotMarker, confirmNewSpot }) => {
     const [zoom, setZoom] = useState<number>(defaultZoom)
+    const [newSpot, setNewSpot] = useState<Marker | null>(null);
+    const markerIcon = new Icon({
+        iconUrl: "/assets/icon/location.svg",
+        iconSize: [50, 50],
+        iconAnchor: [25, zoom > 15 ? 50 : 68 + defaultZoom - zoom]
+    });
+    const newSpotIcon = new Icon({
+        iconUrl: "/assets/icon/newLocation.svg",
+        iconSize: [50, 50],
+        iconAnchor: [25, zoom > 15 ? 50 : 68 + defaultZoom - zoom]
+    });
     const markers = useGetMarkers(reloadMarkers);
 
     useIonViewDidEnter(() => {
@@ -24,14 +36,18 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
                 lat: e.latlng.lat,
                 lng: e.latlng.lng
             });
+            setNewSpot({
+                _id: (e.latlng.lat + e.latlng.lng).toString(),
+                lat: e.latlng.lat,
+                lng: e.latlng.lng
+            });
         }
     }
 
-    const markerIcon = new Icon({
-        iconUrl: "/assets/icon/location.svg",
-        iconSize: [50, 50],
-        iconAnchor: [25, zoom > 15 ? 50 : 68 + defaultZoom - zoom]
-    });
+    useEffect(() => {
+        setNewSpot(null);
+    }, [confirmNewSpot]);
+
     return (
         <Map
             id="mapId"
@@ -62,6 +78,17 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
                     )
                 })
             : null }
+            { newSpot !== null && addSpot &&
+                <LeafletMarker
+                    riseOnHover={true}
+                    key={newSpot._id}
+                    position={[
+                        newSpot.lat,
+                        newSpot.lng
+                    ]}
+                    icon={newSpotIcon}
+                />
+            }
         </Map>
     );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonContent, IonFab, IonFabButton, IonPage, IonIcon, IonToast } from '@ionic/react';
-import { add, close } from 'ionicons/icons';
+import { add, close, checkmarkCircleOutline } from 'ionicons/icons';
 
 import { Marker, Spot, SpotDetails } from '../types/types';
 import { useGetSpot } from '../custom-hooks/use-queries';
@@ -13,6 +13,8 @@ const Map: React.FC = () => {
     const [showSpotDetails, setShowSpotDetails] = useState<Marker>();
     const [newSpotMarker, setNewSpotMarker] = useState<Marker>();
     const [addSpot, setAddSpot] = useState<boolean>(false);
+    const [confirmNewSpot, setConfirmNewSpot] = useState<boolean>(false);
+    const [cancelNewSpot, setCancelNewSpot] = useState<boolean>(false);
     const [reloadMarkers, setReloadMarkers] = useState<boolean>(false);
     const toggleSpotDetails = (marker: Marker) => {
         setShowSpotDetails(marker);
@@ -20,6 +22,15 @@ const Map: React.FC = () => {
 
     const toggleNewSpotMarker = (marker: Marker) => {
         setNewSpotMarker(marker);
+    }
+
+    const toggleClearNewSpotMarker = () => {
+        setCancelNewSpot(!cancelNewSpot);
+        setNewSpotMarker(undefined);
+    }
+
+    const toggleConfirmNewSpot = () => {
+        setConfirmNewSpot(!confirmNewSpot);
     }
 
     return (
@@ -37,19 +48,42 @@ const Map: React.FC = () => {
                     reloadMarkers={ reloadMarkers }
                     toggleSpotDetails={ toggleSpotDetails }
                     toggleNewSpotMarker={ toggleNewSpotMarker }
+                    confirmNewSpot={ cancelNewSpot }
                 />
-                <IonToast
-                    color="secondary"
-                    isOpen={addSpot && typeof newSpotMarker === 'undefined'}
-                    message="Click on the map to add the spot location"
-                />
+                { typeof newSpotMarker === 'undefined'  ?
+                    <IonToast
+                        color="warning"
+                        isOpen={addSpot && typeof newSpotMarker === 'undefined'}
+                        message="Click on the map to add the spot location"
+                    />
+                    :
+                    <div className="action-buttons">
+                        <button
+                            className="btn-cancel"
+                            onClick={toggleClearNewSpotMarker}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            className="btn-success"
+                            onClick={toggleConfirmNewSpot}
+                        >
+                            Confirm
+                        </button>
+                    </div>
+                }
             </IonContent>
             { typeof showSpotDetails !== 'undefined' && <SpotDetailsComponent marker={showSpotDetails} /> }
             { typeof newSpotMarker !== 'undefined'
+                && confirmNewSpot
                 && <NewSpotModal
                     isOpen={addSpot}
                     toggleReloadMarkers={() => setReloadMarkers(!reloadMarkers)}
-                    toggleShowModal={() => {setAddSpot(!addSpot); setNewSpotMarker(undefined)}}
+                    toggleShowModal={() => {
+                        setAddSpot(!addSpot);
+                        toggleClearNewSpotMarker();
+                        toggleConfirmNewSpot();
+                    }}
                     marker={newSpotMarker}
                 />
             }

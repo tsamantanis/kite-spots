@@ -50,6 +50,7 @@ export interface LeafletMapProps {
     reloadMarkers: boolean,
     toggleNewSpotMarker: (marker: Marker) => void,
     toggleSpotDetails: (marker: Marker) => void,
+    confirmNewSpot: boolean,
 }
 
 export interface NewSpotModalProps {

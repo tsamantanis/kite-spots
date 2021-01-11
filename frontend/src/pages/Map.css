@@ -4,3 +4,32 @@
     position: absolute;
     z-index: 0;
 }
+
+.action-buttons {
+    position: absolute;
+    width: 100%;
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 2rem;
+    z-index: 2;
+}
+
+.action-buttons button {
+    width: 45%;
+    margin: 0.5rem;
+}
+
+.action-buttons button:hover {
+    cursor: pointer;
+}
+
+.action-buttons .btn-success {
+    background: var(--ion-color-primary);
+    font-weight: bold;
+}
+
+.action-buttons .btn-cancel {
+    background: var(--ion-color-light);
+    color: var(--ion-color-dark);
+}
