@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { IonSpinner } from '@ionic/react';
 import { Map, Marker as LeafletMarker, Popup, TileLayer } from 'react-leaflet';
 import { useIonViewDidEnter } from '@ionic/react';
 import { NewSpotModalProps, Spot } from '../types/types';
@@ -47,6 +48,8 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
     useEffect(() => {
         setNewSpot(null);
     }, [confirmNewSpot]);
+
+    if (typeof markers === 'undefined') return <IonSpinner name="crescent" color="primary" />
 
     return (
         <Map
