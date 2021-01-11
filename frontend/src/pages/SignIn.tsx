@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { IonContent, IonGrid, IonPage, IonRow, IonCol, IonRouterLink } from '@ionic/react';
+import { IonContent, IonGrid, IonPage, IonRow, IonCol, IonRouterLink, IonIcon } from '@ionic/react';
+import { close } from 'ionicons/icons';
 import { usePostLogin } from '../custom-hooks/use-queries';
 
 import './LoginRegister.css';
@@ -37,6 +38,14 @@ const SignIn: React.FC = () => {
 
     return (
         <div className="container center-items">
+            <IonRouterLink href="/map">
+                <IonIcon
+                    icon={close}
+                    size="large"
+                    className="close-icon"
+                    color="light"
+                />
+            </IonRouterLink>
             <img src="../../../assets/illustration/Globe.svg" alt="Globe" />
             <h1>Sign In</h1>
             <form>

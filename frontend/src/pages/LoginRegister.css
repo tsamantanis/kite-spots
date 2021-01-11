@@ -21,3 +21,9 @@ ion-router-link {
     display: flex;
     justify-content: center;
 }
+
+.center-items .close-icon {
+    position: absolute;
+    top: 24px;
+    right: 16px;
+}
