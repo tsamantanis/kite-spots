@@ -44,20 +44,20 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ content, toggleShowBottomShee
         }
     }, []);
 
-    const toggleDrawer = () => {
-        let c = drawerRef.current as HTMLIonCardElement;
-        if (typeof c !== 'undefined' && c !== null) {
-            if (c.dataset.open === "true") {
-                c.style.transition = ".5s ease-out";
-                c.style.transform = "";
-                c.dataset.open = "false";
-            } else {
-                c.style.transition = ".5s ease-in";
-                c.style.transform = `translateY(${-350}px) `;
-                c.dataset.open = "true";
-            }
-        }
-    };
+    // const toggleDrawer = () => {
+    //     let c = drawerRef.current as HTMLIonCardElement;
+    //     if (typeof c !== 'undefined' && c !== null) {
+    //         if (c.dataset.open === "true") {
+    //             c.style.transition = ".5s ease-out";
+    //             c.style.transform = "";
+    //             c.dataset.open = "false";
+    //         } else {
+    //             c.style.transition = ".5s ease-in";
+    //             c.style.transform = `translateY(${-350}px) `;
+    //             c.dataset.open = "true";
+    //         }
+    //     }
+    // };
     return (
         <IonCard className="bottom-drawer" ref={drawerRef}>
             <IonIcon
@@ -70,7 +70,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ content, toggleShowBottomShee
             <div>
                 <IonButton
                     size="small"
-                    onClick={toggleDrawer}
+                    // onClick={toggleDrawer}
                     className="button-light"
                 />
             </div>
