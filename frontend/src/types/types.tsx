@@ -38,7 +38,8 @@ export interface Spot {
 }
 
 export interface SpotDetails {
-    marker: Marker
+    marker: Marker,
+    toggleResetMarker: () => void,
 }
 
 export interface SpotAPIResponse {

@@ -73,7 +73,12 @@ const Map: React.FC = () => {
                     </div>
                 }
             </IonContent>
-            { typeof showSpotDetails !== 'undefined' && <SpotDetailsComponent marker={showSpotDetails} /> }
+            { typeof showSpotDetails !== 'undefined' &&
+                <SpotDetailsComponent
+                    marker={showSpotDetails}
+                    toggleResetMarker={() => setShowSpotDetails(undefined)}
+                />
+            }
             { typeof newSpotMarker !== 'undefined'
                 && confirmNewSpot
                 && <NewSpotModal

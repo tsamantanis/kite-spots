@@ -15,7 +15,6 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ content, toggleShowBottomShee
     const toggleDrawer = () => {
     let c = drawerRef.current as HTMLIonCardElement;
         if (typeof c !== 'undefined' && c !== null) {
-            console.log(c);
             if (c.dataset.open === "true") {
                 c.style.transition = ".5s ease-out";
                 c.style.transform = "";

@@ -14,7 +14,7 @@ import months, {
 } from '../constants';
 import './SpotDetails.css';
 
-const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker }) => {
+const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker, toggleResetMarker }) => {
     const [showSpotDetails, setShowSpotDetails] = useState(false);
     const spot = useGetSpot(marker._id);
 
@@ -177,7 +177,7 @@ const SpotDetailsComponent: React.FC<SpotDetails> = ({ marker }) => {
         return (
             <BottomSheet
                 content={content}
-                toggleShowBottomSheet={toggleShowSpotDetails}
+                toggleShowBottomSheet={toggleResetMarker}
             />
         );
     } else
