@@ -12,37 +12,37 @@ interface BottomSheetProps {
 const BottomSheet: React.FC<BottomSheetProps> = ({ content, toggleShowBottomSheet }) => {
     const drawerRef = useRef<HTMLIonCardElement | null>(null);
 
-    // useEffect(() => {
-    //     let c = drawerRef.current as HTMLIonCardElement;
-    //     if (typeof c !== 'undefined' && c !== null) {
-    //         const gesture: Gesture = createGesture({
-    //             el: c,
-    //             gestureName: "my-swipe",
-    //             direction: "y",
-    //
-    //             onMove: event => {
-    //                 if (event.deltaY < -300) return;
-    //                 // closing with a downward swipe
-    //                 if (event.deltaY > 20) {
-    //                     c.style.transform = "";
-    //                     c.dataset.open = "false";
-    //                     return;
-    //                 }
-    //                 c.style.transform = `translateY(${event.deltaY}px)`;
-    //             },
-    //
-    //             onEnd: event => {
-    //                 c.style.transition = ".5s ease-out";
-    //                 if (event.deltaY < -30 && c.dataset.open !== "true") {
-    //                     c.style.transform = `translateY(${-350}px) `;
-    //                     c.dataset.open = "true";
-    //                     console.log("in on end");
-    //                 }
-    //             }
-    //         });
-    //         gesture.enable(true);
-    //     }
-    // }, []);
+    useEffect(() => {
+        let c = drawerRef.current as HTMLIonCardElement;
+        if (typeof c !== 'undefined' && c !== null) {
+            const gesture: Gesture = createGesture({
+                el: c,
+                gestureName: "my-swipe",
+                direction: "y",
+
+                onMove: event => {
+                    if (event.deltaY < -300) return;
+                    // closing with a downward swipe
+                    if (event.deltaY > 30) {
+                        c.style.transform = "";
+                        c.dataset.open = "false";
+                        return;
+                    }
+                    c.style.transform = `translateY(${event.deltaY}px)`;
+                },
+
+                onEnd: event => {
+                    c.style.transition = ".5s ease-out";
+                    if (event.deltaY < -30 && c.dataset.open !== "true") {
+                        c.style.transform = `translateY(${-350}px) `;
+                        c.dataset.open = "true";
+                        console.log("in on end");
+                    }
+                }
+            });
+            gesture.enable(true);
+        }
+    }, []);
 
     const toggleDrawer = () => {
         let c = drawerRef.current as HTMLIonCardElement;
