@@ -88,7 +88,7 @@ const SignUp: React.FC = () => {
                     { user === null && <small>An error occurred. Please try again.</small> }
                 </div>
                 <button onClick={signUp}>Sign Up</button>
-                <IonRouterLink href="/login">Already have an account?</IonRouterLink>
+                <IonRouterLink href="/#/login">Already have an account?</IonRouterLink>
             </form>
         </div>
     );

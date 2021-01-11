@@ -73,7 +73,7 @@ const SignIn: React.FC = () => {
                     { user === null && <small>Invalid email and/or password</small> }
                 </div>
                 <button onClick={login}>Sign In</button>
-                <IonRouterLink href="/register">Don't have an account yet?</IonRouterLink>
+                <IonRouterLink href="/#/register">Don't have an account yet?</IonRouterLink>
             </form>
         </div>
     );
