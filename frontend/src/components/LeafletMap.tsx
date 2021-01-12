@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IonSpinner } from '@ionic/react';
-import { Map, Marker as LeafletMarker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer as Map, Marker as LeafletMarker, TileLayer, useMapEvents } from 'react-leaflet';
 import { useIonViewDidEnter } from '@ionic/react';
 import { NewSpotModalProps, Spot } from '../types/types';
 import { LatLngTuple, LeafletMouseEvent, ZoomAnimEvent, Icon } from 'leaflet';
@@ -46,6 +46,13 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
         }
     }
 
+    const MapHandler = () => {
+        const map = useMapEvents({
+            click: addMarker,
+      })
+      return null
+    }
+
     useEffect(() => {
         setNewSpot(null);
     }, [confirmNewSpot]);
@@ -57,9 +64,10 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
             id="mapId"
             center={defaultLatLng}
             zoom={defaultZoom}
-            onClick={addMarker}
-            onZoomEnd={(e: ZoomAnimEvent) => setZoom(e.target._animateToZoom)}
+            // onClick={addMarker}
+            // onZoomEnd={(e: ZoomAnimEvent) => setZoom(e.target._animateToZoom)}
         >
+            <MapHandler />
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -74,8 +82,10 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
                                 marker.lat,
                                 marker.lng
                             ]}
-                            onClick={() => {
-                                toggleSpotDetails(marker);
+                            eventHandlers={{
+                                click: () => {
+                                    toggleSpotDetails(marker);
+                                }
                             }}
                             icon={markerIcon}
                         />
