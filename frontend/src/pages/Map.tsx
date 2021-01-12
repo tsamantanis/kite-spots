@@ -35,7 +35,7 @@ const Map: React.FC = () => {
 
     return (
         <IonPage>
-            <IonContent fullscreen>
+            <IonContent className="fullscreen" fullscreen>
                 <IonFab vertical="top" horizontal="end" slot="fixed">
                     <IonFabButton
                         onClick={() => setAddSpot(!addSpot)}
