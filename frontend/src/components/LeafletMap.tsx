@@ -18,12 +18,12 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ addSpot, reloadMarkers, toggleS
     const markerIcon = new Icon({
         iconUrl: "/assets/icon/location.svg",
         iconSize: [50, 50],
-        iconAnchor: [25, zoom > 15 ? 50 : 68 + defaultZoom - zoom]
+        iconAnchor: [25, 50]
     });
     const newSpotIcon = new Icon({
         iconUrl: "/assets/icon/newLocation.svg",
         iconSize: [50, 50],
-        iconAnchor: [25, zoom > 15 ? 50 : 68 + defaultZoom - zoom]
+        iconAnchor: [25, 50]
     });
     const markers = useGetMarkers(reloadMarkers);
 
