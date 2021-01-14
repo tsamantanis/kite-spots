@@ -27,3 +27,7 @@ ion-router-link {
     top: 24px;
     right: 16px;
 }
+
+img {
+    margin-bottom: -4rem;
+}
