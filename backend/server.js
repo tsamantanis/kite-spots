@@ -19,15 +19,13 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(require('morgan')('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 const uri = process.env.MONGODB_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
-const connection = mongoose.connection;connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-})
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const connection = mongoose.connection;
+connection.on('error', console.error.bind(console, 'MongoDB database connection failed'));
 
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
