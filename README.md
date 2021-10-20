@@ -11,6 +11,7 @@ Kite spots helps kitesurfers find kitesurfing spots and events near them with a 
 -   [Table of contents](#table-of-contents)
 -   [Installation](#installation)
 -   [Usage](#usage)
+-   [Deployment](#deployment)
 
 # Live Preview
 
@@ -49,3 +50,15 @@ To use this project, first clone the repo on your device using the commands belo
 ## Backend
 
 `nodemon server`
+
+# Deployment
+
+[(Back to top)](#table-of-contents)
+
+## Frontend
+
+`git push`
+
+## Backend
+
+`git subtree push --prefix backend heroku master`
